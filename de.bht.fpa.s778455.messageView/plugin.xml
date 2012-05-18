@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="de.bht.fpa.s778455.message.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="de.bht.fpa.s778455.message.Perspective"
+            id="de.bht.fpa.s778455.message.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="de.bht.fpa.mail.s778455.main.perspective">
+         <view
+               id="de.bht.fpa.mail.s000000.common.mail.messagedetails.MessageView"
+               minimized="false"
+               relationship="stack"
+               relative="de.bht.fpa.mail.s778455.main.perspective.bottom">
+         </view>
+      </perspectiveExtension>
+   </extension>
+
+</plugin>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="de.bht.fpa.mail.s778455.main.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="de.bht.fpa.mail.s778455.main.Perspective"
+            id="de.bht.fpa.mail.s778455.main.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="de.bht.fpa.mail.s778455.main.application"
+            name="FPA Mailer">
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="product1"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="de.bht.fpa.mail.s778455.main.application"
+            name="First Mailer">
+         <property
+               name="appName"
+               value="First Mailer">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

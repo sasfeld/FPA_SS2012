@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="de.bht.fpa.mail.s778455.maillist.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="de.bht.fpa.mail.s778455.maillist.Perspective"
+            id="de.bht.fpa.mail.s778455.maillist.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="de.bht.fpa.mail.s778455.main.perspective">
+         <view
+               id="de.bht.fpa.mail.s778455.maillist.MailList"
+               minimized="false"
+               relationship="stack"
+               relative="de.bht.fpa.mail.s778455.main.perspective.top">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.ui"
+            class="de.bht.fpa.mail.s778455.maillist.views.MailListView"
+            id="de.bht.fpa.mail.s778455.maillist.MailList"
+            name="Maillist"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>
