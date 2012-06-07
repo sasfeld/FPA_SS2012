@@ -19,5 +19,69 @@
             id="de.bht.fpa.mail.s778455.filter.perspective">
       </perspective>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="de.bht.fpa.mail.s778455.filter.commands.category"
+            name="Filter">
+      </category>
+      <command
+            categoryId="de.bht.fpa.mail.s778455.filter.commands.category"
+            id="de.bht.fpa.mail.s778455.filter.commands.configureCommand"
+            name="Configure">
+      </command>
+      <command
+            categoryId="de.bht.fpa.mail.s778455.fsnavigation.commands.category"
+            id="de.bht.fpa.mail.s778455.filter.clearCommand"
+            name="Clear">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="de.bht.fpa.mail.s778455.filter.handlers.filterHandler"
+            commandId="de.bht.fpa.mail.s778455.filter.commands.configureCommand">
+      </handler>
+      <handler
+            class="de.bht.fpa.mail.s778455.filter.handlers.filterHandler"
+            commandId="de.bht.fpa.mail.s778455.filter.clearCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=de.bht.fpa.mail.s778455.fsnavigation.menus.sampleMenu">
+         <menu
+               id="de.bht.fpa.mail.s778455.filter.menus.sampleMenu"
+               label="Filter"
+               mnemonic="M">
+            <command
+                  commandId="de.bht.fpa.mail.s778455.filter.commands.configureCommand"
+                  id="de.bht.fpa.mail.s778455.filter.menus.configureCommand"
+                  mnemonic="S">
+            </command>
+            <command
+                  commandId="de.bht.fpa.mail.s778455.filter.clearCommand"
+                  label="Clear Filter"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="de.bht.fpa.mail.s778455.filter.toolbars.sampleToolbar">
+            <command
+                  commandId="de.bht.fpa.mail.s778455.filter.commands.configureCommand"
+                  icon="icons/sample.gif"
+                  id="de.bht.fpa.mail.s778455.filter.toolbars.configureCommand"
+                  tooltip="Say hello world">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
 
 </plugin>

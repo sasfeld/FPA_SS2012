@@ -3,6 +3,8 @@ package de.bht.fpa.mail.s778455.filter;
 import java.util.List;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -52,6 +54,15 @@ public class Activator extends AbstractUIPlugin {
     String filter = "test";
     SenderFilter senderFilter = new SenderFilter(filter, FilterOperator.CONTAINS);
     senderFilter.filter(messages);
+
+    // Register execution listener
+    final IWorkbench workbench = PlatformUI.getWorkbench();
+
+    // ICommandService commandService = (ICommandService)
+    // workbench.getService(ICommandService.class);
+    // commandService.addExecutionListener(new filterExecutionListener());
+    // Add observer to the fsnavigation - scout
+
   }
 
   public static void main(String[] args) {

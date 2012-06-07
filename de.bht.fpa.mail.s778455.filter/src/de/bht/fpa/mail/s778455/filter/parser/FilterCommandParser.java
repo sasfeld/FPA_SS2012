@@ -99,14 +99,22 @@ public class FilterCommandParser {
     } else if (recCommands.contains(firstCom)) {
       // Do recursion here
       String head = command.substring(endPosFirstCom + 1, command.length() - 1);
-      String[] arguments = head.split("[(].*[)],"); // split the two arguments
+      // String[] arguments = head.split("[(].*?[)],"); // split the two
+      // arguments
+      int firstClosingChain = head.indexOf("),");
+      // head.matches("[)],");
+      // String[] arguments = head.split("");
+
+      String[] arguments = { head.substring(0, firstClosingChain + 1),
+          head.substring(firstClosingChain + 2, head.length()) };
 
       if (arguments.length > 2) {
         throw new IllegalArgumentException("The argument weight is invalid. Use 2 arguments only.");
 
       }
       int endPosFirstArg = head.indexOf(arguments[1]) - 1;
-      String firstArg = head.substring(0, endPosFirstArg);
+      // String firstArg = head.substring(0, endPosFirstArg);
+      String firstArg = arguments[0];
       String secondArg = arguments[1];
 
       MessageFilter firstFilter = parseCommand(firstArg);
