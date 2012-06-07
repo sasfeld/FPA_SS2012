@@ -254,7 +254,6 @@ public class MailListView extends ViewPart implements Observer {
   public void update(Observable arg0, Object obj) {
     // TODO Auto-generated method stub
     if (obj instanceof Collection<?>) {
-
       tableViewer.setInput(obj);
     }
   }
