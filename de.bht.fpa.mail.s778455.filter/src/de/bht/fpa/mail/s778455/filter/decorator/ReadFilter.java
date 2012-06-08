@@ -16,6 +16,14 @@ import de.bht.fpa.mail.s000000.common.mail.model.Message;
  */
 public class ReadFilter extends MessageFilter {
 
+  /**
+   * Add another ReadFilter.
+   * 
+   * @param filterText
+   *          - the left-side filter
+   * @param filterOp
+   *          - the right-side filter
+   */
   public ReadFilter(String filterText, FilterOperator filterOp) {
     super(filterText, filterOp);
   }

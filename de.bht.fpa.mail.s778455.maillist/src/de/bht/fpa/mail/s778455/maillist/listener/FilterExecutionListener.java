@@ -8,6 +8,12 @@ import org.eclipse.core.commands.NotHandledException;
 import de.bht.fpa.mail.s778455.fsnavigation.observer.MessageStore;
 import de.bht.fpa.mail.s778455.fsnavigation.observer.Scout;
 
+/**
+ * This Exectuion listener reacts on global (multi-bundle) executions
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class FilterExecutionListener implements IExecutionListener {
   @Override
   public void notHandled(String commandId, NotHandledException exception) {

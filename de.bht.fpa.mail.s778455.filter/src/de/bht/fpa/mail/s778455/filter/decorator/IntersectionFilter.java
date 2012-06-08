@@ -17,6 +17,12 @@ public class IntersectionFilter extends DecoratorFilter {
   // filterOp) {
   // super(filter, filterText, filterOp);
   // }
+  /**
+   * @param filter
+   *          - the left-side filter
+   * @param compFilter
+   *          - the right-side filter
+   */
   public IntersectionFilter(MessageFilter filter, MessageFilter compFilter) {
     super(filter, compFilter);
   }

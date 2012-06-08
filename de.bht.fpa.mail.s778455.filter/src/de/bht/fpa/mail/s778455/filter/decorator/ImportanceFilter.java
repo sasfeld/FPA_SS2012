@@ -16,6 +16,14 @@ import de.bht.fpa.mail.s000000.common.mail.model.Message;
  */
 public class ImportanceFilter extends MessageFilter {
 
+  /**
+   * Filter for the importance.
+   * 
+   * @param filterText
+   *          - the text to filter
+   * @param filterOp
+   *          - the filter operation (contains, equals,...)
+   */
   public ImportanceFilter(String filterText, FilterOperator filterOp) {
     super(filterText, filterOp);
   }

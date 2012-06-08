@@ -69,6 +69,11 @@ public class FilterCommandParser {
     finCommands.add(TEXT);
   }
 
+  /**
+   * SingletonPattern - only access to the ONLY instance
+   * 
+   * @return the instance
+   */
   public static FilterCommandParser getInstance() {
     return instance;
   }
@@ -76,6 +81,14 @@ public class FilterCommandParser {
   /*
    * Commands: Sender("me@this.com", contains) Read(false)
    * Union(Sender("me@this.com", contains), Recipient("foo@bar.de", is))
+   */
+  /**
+   * Commands: Sender("me@this.com", contains) Read(false)
+   * Union(Sender("me@this.com", contains), Recipient("foo@bar.de", is))
+   * 
+   * @param command
+   *          - the command string
+   * @return - the (decorated) filter instance
    */
   public MessageFilter parseCommand(String command) {
     // Global string formats
@@ -112,7 +125,6 @@ public class FilterCommandParser {
         throw new IllegalArgumentException("The argument weight is invalid. Use 2 arguments only.");
 
       }
-      int endPosFirstArg = head.indexOf(arguments[1]) - 1;
       // String firstArg = head.substring(0, endPosFirstArg);
       String firstArg = arguments[0];
       String secondArg = arguments[1];
@@ -208,8 +220,4 @@ public class FilterCommandParser {
 
   }
 
-  public static void main(String args[]) {
-    FilterCommandParser com = FilterCommandParser.getInstance();
-    com.parseCommand("Union(Sender(\"me@this.com\", contains), Recipient(\"foo@bar.de\", is))");
-  }
 }

@@ -16,6 +16,14 @@ import de.bht.fpa.mail.s000000.common.mail.model.Message;
  */
 public class TextFilter extends MessageFilter {
 
+  /**
+   * FIlter for the text
+   * 
+   * @param filterText
+   *          - the text to filter
+   * @param filterOp
+   *          - the filter operation (contains, equals,...)
+   */
   public TextFilter(String filterText, FilterOperator filterOp) {
     super(filterText, filterOp);
   }

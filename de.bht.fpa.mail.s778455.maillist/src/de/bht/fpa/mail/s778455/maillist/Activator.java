@@ -15,6 +15,7 @@ import de.bht.fpa.mail.s778455.maillist.listener.FilterExecutionListener;
 public class Activator extends AbstractUIPlugin {
 
   // The plug-in ID
+  @SuppressWarnings("javadoc")
   public static final String PLUGIN_ID = "de.bht.fpa.mail.s778455.maillist"; //$NON-NLS-1$
 
   // The shared instance

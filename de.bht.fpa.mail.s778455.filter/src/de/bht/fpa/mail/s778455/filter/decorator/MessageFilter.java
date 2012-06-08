@@ -20,12 +20,10 @@ public abstract class MessageFilter implements IFilter {
   /**
    * Create a new MessageFilter.
    * 
-   * @param searchText
-   *          - the String to be filtered.
    * @param filterText
    *          - the filter String.
-   * @param mode
-   *          - the filter Mode
+   * @param filterOp
+   *          - the filter Operation.
    * 
    */
   public MessageFilter(String filterText, FilterOperator filterOp) {
@@ -33,10 +31,16 @@ public abstract class MessageFilter implements IFilter {
     this.operator = filterOp;
   }
 
+  /**
+   * @return
+   */
   public String getFilterText() {
     return this.filterText;
   }
 
+  /**
+   * @return
+   */
   public FilterOperator getFilterOperator() {
     return this.operator;
   }

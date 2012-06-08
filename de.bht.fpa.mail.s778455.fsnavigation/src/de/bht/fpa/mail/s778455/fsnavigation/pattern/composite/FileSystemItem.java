@@ -1,6 +1,7 @@
 package de.bht.fpa.mail.s778455.fsnavigation.pattern.composite;
 
 import java.io.File;
+import java.io.FileFilter;
 
 /**
  * Composite - Pattern: This class modelles the abstract Component class. See
@@ -34,6 +35,11 @@ public abstract class FileSystemItem {
 
   // public abstract void addFile(File file);
 
+  /**
+   * Return all children
+   * 
+   * @return an array of children
+   */
   public abstract FileSystemItem[] getFiles();
 
   /**
@@ -42,12 +48,18 @@ public abstract class FileSystemItem {
    * @return true if the element has children.
    */
   public boolean hasChildren() {
-    if (myFile.isDirectory()) {
-      // if (myFile.list() != null || myFile.list().length != 0) {
-      return true;
-      // }
+    File[] dirs = myFile.listFiles(new FileFilter() {
+
+      @Override
+      public boolean accept(File name) {
+        // TODO Auto-generated method stub
+        return name.isDirectory();
+      }
+    });
+    if (dirs == null || dirs.length == 0) {
+      return false;
     }
-    return false;
+    return true;
   }
 
   /**

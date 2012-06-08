@@ -76,7 +76,9 @@ public class filterHandler extends AbstractHandler implements Observer {
       // Filter here
       String command = ParserCommandBuilder.buildCommand(fd);
       MessageFilter resultFilter = FilterCommandParser.getInstance().parseCommand(command);
-      Collection<?> filterMessages = resultFilter.filter((Iterable<Message>) messagesToFilter);
+      @SuppressWarnings("unchecked")
+      Iterable<Message> messagesToFilter2 = (Iterable<Message>) messagesToFilter;
+      Collection<?> filterMessages = resultFilter.filter(messagesToFilter2);
       return filterMessages;
     }
 

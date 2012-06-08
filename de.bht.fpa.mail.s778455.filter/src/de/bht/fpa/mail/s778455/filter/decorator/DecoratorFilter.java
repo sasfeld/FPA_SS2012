@@ -23,6 +23,14 @@ public abstract class DecoratorFilter extends MessageFilter {
   // super(filterText, filterOp);
   // this.filter = filter;
   // }
+  /**
+   * Create a new UNION or INTERSECTION filter.
+   * 
+   * @param filter
+   *          on the left side
+   * @param compareFilter
+   *          filter on the right side
+   */
   public DecoratorFilter(MessageFilter filter, MessageFilter compareFilter) {
     super("", null);
 

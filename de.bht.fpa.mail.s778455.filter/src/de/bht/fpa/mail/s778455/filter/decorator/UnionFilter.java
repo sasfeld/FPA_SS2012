@@ -17,6 +17,14 @@ public class UnionFilter extends DecoratorFilter {
   // filterOp) {
   // super(filter, filterText, filterOp);
   // }
+  /**
+   * Create a new union filter.
+   * 
+   * @param filter
+   *          - the left-side filter
+   * @param compFilter
+   *          - the right-side filter
+   */
   public UnionFilter(MessageFilter filter, MessageFilter compFilter) {
     super(filter, compFilter);
   }

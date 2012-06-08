@@ -18,6 +18,12 @@ import de.bht.fpa.mail.s000000.common.filter.FilterType;
  */
 public class ParserCommandBuilder {
 
+  /**
+   * The command builder (for the use in the parser)
+   * 
+   * @param fd
+   * @return the buildCommand
+   */
   public static String buildCommand(FilterDialog fd) {
     String command = "";
     String endOfCommand = "";

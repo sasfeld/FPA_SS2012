@@ -3,8 +3,6 @@ package de.bht.fpa.mail.s778455.filter;
 import java.util.List;
 
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -23,6 +21,7 @@ import de.bht.fpa.mail.s778455.filter.parser.FilterCommandParser;
 public class Activator extends AbstractUIPlugin {
 
   // The plug-in ID
+  @SuppressWarnings("javadoc")
   public static final String PLUGIN_ID = "de.bht.fpa.mail.s778455.filter"; //$NON-NLS-1$
 
   // The shared instance
@@ -56,7 +55,6 @@ public class Activator extends AbstractUIPlugin {
     senderFilter.filter(messages);
 
     // Register execution listener
-    final IWorkbench workbench = PlatformUI.getWorkbench();
 
     // ICommandService commandService = (ICommandService)
     // workbench.getService(ICommandService.class);

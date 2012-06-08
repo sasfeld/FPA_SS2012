@@ -20,6 +20,11 @@ public final class FsFilter implements FileFilter {
     super();
   }
 
+  /**
+   * SINGLETON!!!
+   * 
+   * @return the instance
+   */
   public static FsFilter getInstance() {
     return FsFilter.INSTANCE;
   }

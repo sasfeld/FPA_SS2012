@@ -3,8 +3,13 @@ package de.bht.fpa.mail.s778455.filter;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
+/**
+ * @author slash
+ * 
+ */
 public class Perspective implements IPerspectiveFactory {
 
-	public void createInitialLayout(IPageLayout layout) {
-	}
+  @Override
+  public void createInitialLayout(IPageLayout layout) {
+  }
 }

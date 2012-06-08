@@ -2,6 +2,12 @@ package de.bht.fpa.mail.s778455.fsnavigation.observer;
 
 import java.util.Observable;
 
+/**
+ * THe global Scout for this bundle.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public final class Scout extends Observable {
   /**
    * Singleton-Pattern.

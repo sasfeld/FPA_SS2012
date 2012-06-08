@@ -4,6 +4,12 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 
+/**
+ * VON FRÜHER!
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class MailSelectedListener implements ISelectionListener {
 
   @Override

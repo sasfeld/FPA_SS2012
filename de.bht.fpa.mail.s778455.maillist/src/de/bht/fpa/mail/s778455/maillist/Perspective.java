@@ -59,8 +59,17 @@ import org.eclipse.ui.IPerspectiveFactory;
 public class Perspective implements IPerspectiveFactory {
   private static final String PERSPECTIVE_ID = Activator.PLUGIN_ID + ".perspective";
 
+  /**
+   * Frame left
+   */
   public static final String LEFT = PERSPECTIVE_ID + ".left";
+  /**
+   * Frame top
+   */
   public static final String TOP = PERSPECTIVE_ID + ".top";
+  /**
+   * Frame bottom
+   */
   public static final String BOTTOM = PERSPECTIVE_ID + ".bottom";
 
   private static final float BOTTOM_RATIO = 0.50f;

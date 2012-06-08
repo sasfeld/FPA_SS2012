@@ -6,6 +6,7 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
+@SuppressWarnings("javadoc")
 public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
   private static final int WIDTH = 800;
