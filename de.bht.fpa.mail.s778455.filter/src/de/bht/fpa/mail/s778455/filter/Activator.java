@@ -63,14 +63,10 @@ public class Activator extends AbstractUIPlugin {
 
   }
 
-  public static void main(String[] args) {
-    // testObjects();
-    testParser();
-  }
-
   /**
    * Test of the parser.
    */
+  @SuppressWarnings("unused")
   private static void testParser() {
     RandomTestDataProvider testData = new RandomTestDataProvider(5);
     List<Message> messages = testData.getMessages();
@@ -113,6 +109,7 @@ public class Activator extends AbstractUIPlugin {
   /**
    * Test filter objects directly (non-parser)
    */
+  @SuppressWarnings("unused")
   private static void testObjects() {
     // HIER TESTENR
     RandomTestDataProvider testData = new RandomTestDataProvider(5);

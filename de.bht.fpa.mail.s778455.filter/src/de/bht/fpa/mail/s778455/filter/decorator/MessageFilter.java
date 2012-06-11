@@ -32,14 +32,16 @@ public abstract class MessageFilter implements IFilter {
   }
 
   /**
-   * @return
+   * Blöas
+   * 
+   * @return String the filter text
    */
   public String getFilterText() {
     return this.filterText;
   }
 
   /**
-   * @return
+   * @return FilterOperator the filterOperator
    */
   public FilterOperator getFilterOperator() {
     return this.operator;

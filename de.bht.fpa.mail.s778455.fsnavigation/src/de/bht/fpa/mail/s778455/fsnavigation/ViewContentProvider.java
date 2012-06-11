@@ -1,9 +1,12 @@
 package de.bht.fpa.mail.s778455.fsnavigation;
 
-
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+/**
+ * @author slash
+ * 
+ */
 public class ViewContentProvider implements ITreeContentProvider {
 
   /**

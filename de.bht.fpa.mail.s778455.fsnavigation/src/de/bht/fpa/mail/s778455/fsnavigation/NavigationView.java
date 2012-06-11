@@ -1,6 +1,5 @@
 package de.bht.fpa.mail.s778455.fsnavigation;
 
-
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -8,7 +7,16 @@ import org.eclipse.ui.part.ViewPart;
 
 import de.bht.fpa.mail.s778455.fsnavigation.view.ViewLabelProvider;
 
+/**
+ * The Navigation View
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class NavigationView extends ViewPart {
+  /**
+   * This View's ID
+   */
   public static final String ID = "de.bht.fpa.s<MATRIKELNUMMER>.fsnavigation.NavigationView";
   private TreeViewer viewer;
 

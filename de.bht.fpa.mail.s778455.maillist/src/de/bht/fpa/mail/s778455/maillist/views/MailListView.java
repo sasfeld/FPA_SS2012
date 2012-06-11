@@ -33,6 +33,12 @@ import de.ralfebert.rcputils.tables.TableViewerBuilder;
 import de.ralfebert.rcputils.tables.format.Formatter;
 import de.ralfebert.rcputils.tables.format.StringValueFormatter;
 
+/**
+ * The maillist view.
+ * 
+ * @author slash
+ * 
+ */
 public class MailListView extends ViewPart implements Observer {
 
   /**
@@ -209,6 +215,7 @@ public class MailListView extends ViewPart implements Observer {
       @Override
       public void formatCell(ViewerCell cell, Object value) {
         cell.setText("");
+        @SuppressWarnings("unchecked")
         Collection<Recipient> list = (Collection<Recipient>) value;
         for (Recipient recipient : list) {
           if (cell.getText().length() == 0) {

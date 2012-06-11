@@ -13,6 +13,7 @@ import de.bht.fpa.mail.s778455.fsnavigation.observer.Scout;
 public class Activator extends AbstractUIPlugin {
 
   // The plug-in ID
+  @SuppressWarnings("javadoc")
   public static final String PLUGIN_ID = "de.bht.fpa.mail.s778455.fsnavigation"; //$NON-NLS-1$
 
   // The shared instance
