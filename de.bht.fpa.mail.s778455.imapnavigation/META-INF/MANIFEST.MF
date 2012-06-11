@@ -1,13 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Filter
-Bundle-SymbolicName: de.bht.fpa.mail.s778455.filter; singleton:=true
+Bundle-Name: Imapnavigation
+Bundle-SymbolicName: de.bht.fpa.mail.s778455.imapnavigation; singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: de.bht.fpa.mail.s778455.filter.Activator
+Bundle-Activator: de.bht.fpa.mail.s778455.imapnavigation.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- de.bht.fpa.mail.common;bundle-version="1.0.0",
+ de.bht.fpa.mail.common;bundle-version="1.0.2",
  de.bht.fpa.mail.s778455.maillist;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Import-Package: de.bht.fpa.mail.s000000.common.filter

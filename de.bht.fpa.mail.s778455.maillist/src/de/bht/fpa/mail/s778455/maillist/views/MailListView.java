@@ -25,7 +25,6 @@ import de.bht.fpa.mail.s000000.common.mail.model.Recipient;
 import de.bht.fpa.mail.s000000.common.mail.model.Sender;
 import de.bht.fpa.mail.s000000.common.mail.testdata.RandomTestDataProvider;
 import de.bht.fpa.mail.s000000.common.table.MessageValues;
-import de.bht.fpa.mail.s778455.fsnavigation.observer.Scout;
 import de.bht.fpa.mail.s778455.maillist.Activator;
 import de.ralfebert.rcputils.tables.ColumnBuilder;
 import de.ralfebert.rcputils.tables.ICellFormatter;
@@ -40,7 +39,10 @@ import de.ralfebert.rcputils.tables.format.StringValueFormatter;
  * 
  */
 public class MailListView extends ViewPart implements Observer {
-
+  /**
+   * The maillist's ID.
+   */
+  public static final String ID = "de.bht.fpa.mail.s778455.maillist.MailList";
   /**
    * The importance column width - integer (percent)
    */
@@ -237,7 +239,7 @@ public class MailListView extends ViewPart implements Observer {
     t.setInput(createDummyMessages());
     t.setInput(null); // must be this way -> empty table
     // Add as observer
-    Scout.getInstance().addObserver(this);
+    // Scout.getInstance().addObserver(this);
 
     // Add selection provider and listener
     getSite().setSelectionProvider(tableViewer);
@@ -263,5 +265,9 @@ public class MailListView extends ViewPart implements Observer {
     if (obj instanceof Collection<?>) {
       tableViewer.setInput(obj);
     }
+  }
+
+  public Collection<Message> getMessages() {
+    return (Collection<Message>) tableViewer.getInput();
   }
 }

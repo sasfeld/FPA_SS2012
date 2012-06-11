@@ -9,16 +9,20 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.bht.fpa.mail.s000000.common.filter.FilterDialog;
 import de.bht.fpa.mail.s000000.common.mail.model.Message;
+import de.bht.fpa.mail.s778455.filter.MessageStore;
 import de.bht.fpa.mail.s778455.filter.decorator.MessageFilter;
 import de.bht.fpa.mail.s778455.filter.parser.FilterCommandParser;
 import de.bht.fpa.mail.s778455.filter.parser.ParserCommandBuilder;
-import de.bht.fpa.mail.s778455.fsnavigation.observer.MessageStore;
-import de.bht.fpa.mail.s778455.fsnavigation.observer.Scout;
+import de.bht.fpa.mail.s778455.maillist.views.MailListView;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -32,7 +36,7 @@ public class filterHandler extends AbstractHandler implements Observer {
    * The constructor.
    */
   public filterHandler() {
-    Scout.getInstance().addObserver(this);
+
   }
 
   /**
@@ -48,10 +52,21 @@ public class filterHandler extends AbstractHandler implements Observer {
     if (event.getCommand().getId().equals("de.bht.fpa.mail.s778455.filter.commands.configureCommand")) {
       FilterDialog fd = new FilterDialog(sh);
       if (fd.open() == FilterDialog.OK) {
+        // save Messages
+        // Get from Maillist
+        final IWorkbench workbench = PlatformUI.getWorkbench();
+        final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+        final IViewPart view = page.findView(MailListView.ID);
+
+        MailListView mailView = (MailListView) view;
+        Collection<?> messages = mailView.getMessages();
+        de.bht.fpa.mail.s778455.filter.MessageStore.getInstance().update(null, messages);
+        MessageStore.getInstance().setUpdate(false);
         return filterMessages(fd);
       }
       // Clear-Command
     } else if (event.getCommand().getId().equals("de.bht.fpa.mail.s778455.filter.clearCommand")) {
+      MessageStore.getInstance().setUpdate(true);
       return MessageStore.getInstance().returnMessages();
     }
     return null;
@@ -67,7 +82,15 @@ public class filterHandler extends AbstractHandler implements Observer {
    */
   private Collection<?> filterMessages(FilterDialog fd) {
     // Take messages from Store
-    Collection<?> messagesToFilter = MessageStore.getInstance().returnMessages();
+    // Get from Maillist
+    final IWorkbench workbench = PlatformUI.getWorkbench();
+    final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+    final IViewPart view = page.findView(MailListView.ID);
+
+    MailListView mailView = (MailListView) view;
+    Collection<?> messagesToFilter = mailView.getMessages();
+    // Collection<?> messagesToFilter =
+    // MessageStore.getInstance().returnMessages();
     if (messagesToFilter == null) {
       showMessage(fd.getShell(), "No messages selected!");
     } else if (messagesToFilter.size() == 0) {

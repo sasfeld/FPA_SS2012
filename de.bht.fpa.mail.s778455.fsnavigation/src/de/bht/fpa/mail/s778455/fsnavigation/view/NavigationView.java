@@ -13,6 +13,10 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 import de.bht.fpa.mail.s000000.common.mail.model.Message;
@@ -20,6 +24,7 @@ import de.bht.fpa.mail.s000000.common.rcp.selection.SelectionHelper;
 import de.bht.fpa.mail.s778455.fsnavigation.observer.Scout;
 import de.bht.fpa.mail.s778455.fsnavigation.pattern.composite.FsDirectory;
 import de.bht.fpa.mail.s778455.fsnavigation.pattern.composite.FsFilter;
+import de.bht.fpa.mail.s778455.maillist.views.MailListView;
 
 public class NavigationView extends ViewPart implements Observer {
   public static final String ID = "de.bht.fpa.s778455.fsnavigation.NavigationView";
@@ -70,7 +75,13 @@ public class NavigationView extends ViewPart implements Observer {
           messages.add(message);
         }
       }
-      Scout.getInstance().newMessage(messages);
+      // Inform Maillist
+      final IWorkbench workbench = PlatformUI.getWorkbench();
+      final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+      final IViewPart view = page.findView(MailListView.ID);
+
+      MailListView mailView = (MailListView) view;
+      mailView.update(null, messages);
     }
   }
 
