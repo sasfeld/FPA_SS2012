@@ -38,7 +38,7 @@ import de.ralfebert.rcputils.tables.format.StringValueFormatter;
  * @author slash
  * 
  */
-public class MailListView extends ViewPart implements Observer {
+public class MailListView extends ViewPart implements Observer, IMailListViewAccess {
   /**
    * The maillist's ID.
    */
@@ -267,7 +267,10 @@ public class MailListView extends ViewPart implements Observer {
     }
   }
 
+  @Override
   public Collection<Message> getMessages() {
-    return (Collection<Message>) tableViewer.getInput();
+    @SuppressWarnings("unchecked")
+    Collection<Message> input = (Collection<Message>) tableViewer.getInput();
+    return input;
   }
 }

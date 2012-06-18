@@ -5,6 +5,13 @@ import org.eclipse.jface.viewers.Viewer;
 
 import de.bht.fpa.mail.s778455.fsnavigation.pattern.composite.FileSystemItem;
 
+/**
+ * This class realizes the navigation view's content which is organized by the
+ * Composite Pattern.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class ViewContentProvider implements ITreeContentProvider {
 
   /**

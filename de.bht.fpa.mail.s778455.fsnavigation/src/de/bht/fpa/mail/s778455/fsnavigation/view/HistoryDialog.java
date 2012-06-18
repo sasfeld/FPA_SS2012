@@ -17,11 +17,22 @@ import org.eclipse.swt.widgets.Shell;
 
 import de.bht.fpa.mail.s778455.fsnavigation.observer.Scout;
 
+/**
+ * Show the history dialog.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class HistoryDialog extends Dialog {
   private static final int HEIGHT = 100;
   private static final int WIDTH = 100;
   private ListViewer viewer;
 
+  /**
+   * Create a new dialog in a given shell.
+   * 
+   * @param parentShell
+   */
   public HistoryDialog(Shell parentShell) {
     super(parentShell);
     // TODO Auto-generated constructor stub
@@ -90,6 +101,9 @@ public class HistoryDialog extends Dialog {
   /**
    * // * Save the current File to the history. // * // * @param directory // *
    * - the directory to save //
+   * 
+   * @param directory
+   *          - a File instance that is a directory
    */
   public static void saveHistory(File directory) {
     try {

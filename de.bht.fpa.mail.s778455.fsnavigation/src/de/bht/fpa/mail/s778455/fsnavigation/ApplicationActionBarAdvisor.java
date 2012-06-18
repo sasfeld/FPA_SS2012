@@ -5,16 +5,25 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
+/**
+ * @author slash
+ * 
+ */
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
-    public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
-        super(configurer);
-    }
+  /**
+   * @param configurer
+   */
+  public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
+    super(configurer);
+  }
 
-    protected void makeActions(IWorkbenchWindow window) {
-    }
+  @Override
+  protected void makeActions(IWorkbenchWindow window) {
+  }
 
-    protected void fillMenuBar(IMenuManager menuBar) {
-    }
-    
+  @Override
+  protected void fillMenuBar(IMenuManager menuBar) {
+  }
+
 }

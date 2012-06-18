@@ -6,6 +6,12 @@ import org.eclipse.swt.graphics.Image;
 import de.bht.fpa.mail.s778455.fsnavigation.Activator;
 import de.bht.fpa.mail.s778455.fsnavigation.pattern.composite.FileSystemItem;
 
+/**
+ * This class realizes the labels on the navigation view's elements.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class ViewLabelProvider extends LabelProvider {
 
   /**

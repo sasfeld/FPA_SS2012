@@ -7,6 +7,12 @@ import de.bht.fpa.mail.s778455.imapnavigation.Activator;
 import de.bht.fpa.mail.s778455.imapnavigation.composite.IMAPAccount;
 import de.bht.fpa.mail.s778455.imapnavigation.composite.IMAPItem;
 
+/**
+ * Label-Provider of the IMAP view.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class ViewLabelProvider extends LabelProvider {
 
   /**

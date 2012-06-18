@@ -1,5 +1,8 @@
 package de.bht.fpa.mail.s778455.imapnavigation.views;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -15,8 +18,10 @@ import de.bht.fpa.mail.s000000.common.mail.model.Account;
 import de.bht.fpa.mail.s000000.common.mail.model.builder.AccountBuilder;
 import de.bht.fpa.mail.s000000.common.mail.model.builder.Builders;
 import de.bht.fpa.mail.s000000.common.rcp.selection.SelectionHelper;
-import de.bht.fpa.mail.s778455.imapnavigation.composite.IMAPAccount;
+import de.bht.fpa.mail.s778455.imapnavigation.composite.IMAPDummyContainer;
 import de.bht.fpa.mail.s778455.imapnavigation.composite.IMAPFolder;
+import de.bht.fpa.mail.s778455.imapnavigation.observer.Scout;
+import de.bht.fpa.mail.s778455.maillist.views.IMailListViewAccess;
 import de.bht.fpa.mail.s778455.maillist.views.MailListView;
 
 /**
@@ -34,7 +39,7 @@ import de.bht.fpa.mail.s778455.maillist.views.MailListView;
  * <p>
  */
 
-public class IMAPView extends ViewPart {
+public class IMAPView extends ViewPart implements Observer {
 
   /**
    * The ID of the view as specified by the extension.
@@ -43,6 +48,12 @@ public class IMAPView extends ViewPart {
 
   private TreeViewer viewer;
 
+  /**
+   * This listener reacts on a changed input of the IMAP view.
+   * 
+   * @author Sascha Feldmann
+   * 
+   */
   public class FolderSelectedListener implements ISelectionChangedListener {
 
     @Override
@@ -52,16 +63,18 @@ public class IMAPView extends ViewPart {
 
       IMAPFolder folder = SelectionHelper.handleStructuredSelectionEvent(event, IMAPFolder.class);
 
-      getViewSite().getActionBars().getStatusLineManager()
-          .setMessage(folder.returnMyFolder().getFullName() + " was selected");
-      // Inform Maillist
-      final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-      final IViewPart view = page.findView(MailListView.ID);
+      if (folder != null) {
+        getViewSite().getActionBars().getStatusLineManager()
+            .setMessage(folder.returnMyFolder().getFullName() + " was selected");
+        // Inform Maillist
+        final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+        final IViewPart view = page.findView(MailListView.ID);
 
-      MailListView mailView = (MailListView) view;
-      mailView.update(null, folder.returnMyFolder().getMessages());
+        IMailListViewAccess mailView = (MailListView) view;
+        mailView.update(null, folder.returnMyFolder().getMessages());
+
+      }
     }
-
   }
 
   /**
@@ -90,30 +103,28 @@ public class IMAPView extends ViewPart {
 
     // Add listener
     viewer.addSelectionChangedListener(new FolderSelectedListener());
+
+    Scout.getInstance().addObserver(this);
   }
 
   private Object createModel() {
-    return new IMAPAccount(getDummyAccount());
+    IMAPDummyContainer container = IMAPDummyContainer.getInstance();
+    container.addAccount(getAccount());
+    return IMAPDummyContainer.getInstance();
   }
 
   /**
-   * Create a dummy IMAP-Account for test-cases.
+   * Return an account instance.
    */
-  private Account getDummyAccount() {
-
+  private Account getAccount() {
+    // @formatter:off
     AccountBuilder builder = Builders.newAccountBuilder();
     builder
-        .host("test.anywhere.com")
-        .username("bob")
-        .password("notsecure")
-        .name("BOB-Imap")
-        .folder(
-            Builders.newFolderBuilder().fullName("INBOX")
-                .folder(Builders.newFolderBuilder().fullName("Customers").message(Builders.newMessageBuilder().id(1)))
-                .folder(Builders.newFolderBuilder().fullName("Sent"))
-
-        );
-
+        .host("imap.gmail.com")
+        .username("bhtfpa@googlemail.com")
+        .password("B-BgxkT_anr2bubbyTLM")
+        .name("BOB-Imap");
+    // @formatter:on
     return builder.build();
   }
 
@@ -123,5 +134,10 @@ public class IMAPView extends ViewPart {
   @Override
   public void setFocus() {
     viewer.getControl().setFocus();
+  }
+
+  @Override
+  public void update(Observable o, Object arg) {
+    viewer.refresh();
   }
 }

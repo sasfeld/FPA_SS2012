@@ -5,6 +5,10 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
+/**
+ * @author slash
+ * 
+ */
 public final class DemoView extends ViewPart {
 
   private TreeViewer viewer;

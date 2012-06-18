@@ -22,6 +22,7 @@ import de.bht.fpa.mail.s778455.filter.MessageStore;
 import de.bht.fpa.mail.s778455.filter.decorator.MessageFilter;
 import de.bht.fpa.mail.s778455.filter.parser.FilterCommandParser;
 import de.bht.fpa.mail.s778455.filter.parser.ParserCommandBuilder;
+import de.bht.fpa.mail.s778455.maillist.views.IMailListViewAccess;
 import de.bht.fpa.mail.s778455.maillist.views.MailListView;
 
 /**
@@ -53,20 +54,20 @@ public class filterHandler extends AbstractHandler implements Observer {
       FilterDialog fd = new FilterDialog(sh);
       if (fd.open() == FilterDialog.OK) {
         // save Messages
-        // Get from Maillist
         final IWorkbench workbench = PlatformUI.getWorkbench();
         final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
         final IViewPart view = page.findView(MailListView.ID);
 
-        MailListView mailView = (MailListView) view;
+        IMailListViewAccess mailView = (MailListView) view;
         Collection<?> messages = mailView.getMessages();
-        de.bht.fpa.mail.s778455.filter.MessageStore.getInstance().update(null, messages);
+        MessageStore.getInstance().update(null, messages); // Notify observers
         MessageStore.getInstance().setUpdate(false);
         return filterMessages(fd);
       }
       // Clear-Command
     } else if (event.getCommand().getId().equals("de.bht.fpa.mail.s778455.filter.clearCommand")) {
       MessageStore.getInstance().setUpdate(true);
+      // return stored messages
       return MessageStore.getInstance().returnMessages();
     }
     return null;
@@ -87,10 +88,8 @@ public class filterHandler extends AbstractHandler implements Observer {
     final IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
     final IViewPart view = page.findView(MailListView.ID);
 
-    MailListView mailView = (MailListView) view;
+    IMailListViewAccess mailView = (MailListView) view;
     Collection<?> messagesToFilter = mailView.getMessages();
-    // Collection<?> messagesToFilter =
-    // MessageStore.getInstance().returnMessages();
     if (messagesToFilter == null) {
       showMessage(fd.getShell(), "No messages selected!");
     } else if (messagesToFilter.size() == 0) {

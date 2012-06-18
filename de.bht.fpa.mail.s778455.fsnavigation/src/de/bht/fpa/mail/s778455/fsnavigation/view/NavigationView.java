@@ -26,7 +26,16 @@ import de.bht.fpa.mail.s778455.fsnavigation.pattern.composite.FsDirectory;
 import de.bht.fpa.mail.s778455.fsnavigation.pattern.composite.FsFilter;
 import de.bht.fpa.mail.s778455.maillist.views.MailListView;
 
+/**
+ * Modelles the Navigation view.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class NavigationView extends ViewPart implements Observer {
+  /**
+   * The Navigation View's ID (so that it can be found).
+   */
   public static final String ID = "de.bht.fpa.s778455.fsnavigation.NavigationView";
   /**
    * Path to the History - SaveFile.
@@ -38,26 +47,27 @@ public class NavigationView extends ViewPart implements Observer {
   public static final String MSG_HISTORY_EMPTY = "No base directories in history.";
   private TreeViewer viewer;
 
+  /**
+   * The listener reacts on changed selections of the navigation view.
+   * 
+   * @author Sascha Feldmann
+   * 
+   */
   public class DirSelectedListener implements ISelectionChangedListener {
 
     @Override
     /** This method is called when the viewer's input gets changed 
      * @param event the SelectionChangedEvent **/
     public void selectionChanged(SelectionChangedEvent event) {
-      // TODO Auto-generated method stub
-
       // Unwrap as Directory
-
       FsDirectory dir = SelectionHelper.handleStructuredSelectionEvent(event, FsDirectory.class);
-
-      // System.out.println("Selected directory: " + dir);
-
       getViewSite().getActionBars().getStatusLineManager().setMessage(dir.getMyFile().getPath() + " was selected");
 
       // Count elements
 
       File[] children = dir.getMyFile().listFiles();
       ArrayList<File> leafs = new ArrayList<File>();
+      @SuppressWarnings("unused")
       int count = 0;
       for (File child : children) {
         if (FsFilter.getInstance().acceptXML(child)) {
@@ -159,9 +169,6 @@ public class NavigationView extends ViewPart implements Observer {
   public void update(Observable scout, Object obj) {
     if (obj instanceof File) {
       viewer.setInput(new FsDirectory((File) obj));
-    } else { // ignore
-      // throw new
-      // IllegalArgumentException("The notify-object must be a file in this case");
     }
   }
 }

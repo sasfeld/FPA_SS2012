@@ -5,6 +5,12 @@ import org.eclipse.jface.viewers.Viewer;
 
 import de.bht.fpa.mail.s778455.imapnavigation.composite.IMAPItem;
 
+/**
+ * Content-Provider of the IMAP View.
+ * 
+ * @author Sascha Feldmann
+ * 
+ */
 public class ViewContentProvider implements ITreeContentProvider {
 
   /**
