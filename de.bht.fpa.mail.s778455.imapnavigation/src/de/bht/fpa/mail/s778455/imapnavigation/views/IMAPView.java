@@ -105,6 +105,9 @@ public class IMAPView extends ViewPart implements Observer {
     viewer.addSelectionChangedListener(new FolderSelectedListener());
 
     Scout.getInstance().addObserver(this);
+
+    // Load all messages of accounts if they exist
+    IMAPDummyContainer.getInstance().loadAccounts();
   }
 
   private Object createModel() {
@@ -138,6 +141,7 @@ public class IMAPView extends ViewPart implements Observer {
 
   @Override
   public void update(Observable o, Object arg) {
+    IMAPDummyContainer.getInstance().saveAccounts();
     viewer.refresh();
   }
 }

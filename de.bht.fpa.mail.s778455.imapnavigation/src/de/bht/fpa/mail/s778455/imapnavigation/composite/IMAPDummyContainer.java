@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.swt.widgets.Display;
 
+import de.bht.fpa.mail.s000000.common.mail.imapsync.ImapHelper;
 import de.bht.fpa.mail.s000000.common.mail.model.Account;
 import de.bht.fpa.mail.s778455.imapnavigation.jobs.ImapSynchJob;
 import de.bht.fpa.mail.s778455.imapnavigation.observer.Scout;
@@ -21,7 +22,7 @@ import de.bht.fpa.mail.s778455.imapnavigation.observer.Scout;
 public class IMAPDummyContainer extends IMAPItem {
 
   private static IMAPDummyContainer instance;
-  private final Set<Account> accounts;
+  private Set<Account> accounts;
 
   private IMAPDummyContainer() {
     this.accounts = new HashSet<Account>();
@@ -101,5 +102,30 @@ public class IMAPDummyContainer extends IMAPItem {
       job.schedule();
     }
 
+  }
+
+  /**
+   * Save all accounts to the database.
+   */
+  public void saveAccounts() {
+    for (Account aktAccount : this.accounts) {
+      ImapHelper.saveAccount(aktAccount);
+    }
+
+  }
+
+  /**
+   * Load all saved accounts.
+   */
+  public void loadAccounts() {
+    Set<Account> newAccounts = new HashSet<Account>();
+    for (Account aktAccount : this.accounts) {
+      Account fetchedAccount = ImapHelper.getAccount(aktAccount.getName());
+      if (fetchedAccount != null) {
+        newAccounts.add(fetchedAccount);
+      }
+    }
+    this.accounts = newAccounts;
+    Scout.getInstance().sendMessage();
   }
 }
